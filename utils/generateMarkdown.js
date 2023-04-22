@@ -10,10 +10,49 @@ function renderLicenseLink(license) {}
 // If there is no license, return an empty string
 function renderLicenseSection(license) {}
 
+// TODO: Generate GitHub profile link
+function getGitHubLink(username){
+
+}
+
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
+  ${renderLicenseBadge(data.license)}
 
+  ## Description
+  ${data.description}
+
+  ## Table of Contents
+  [Installation](#installation)
+  [Usage](#usage)
+  [License](#license)
+  [Contributing](#contributing)
+  [Test](#test)
+  [Questions](#questions)
+
+  ## Installation
+  ${data.installation}
+
+  ## Usage
+  ${data.usage}
+
+  ## License
+  [License Link](${renderLicenseLink(data.license)})
+  ${renderLicenseSection(data.license)}
+
+  ## Contributing
+  ${data.contributing}
+
+  ## Test
+  ${data.test}
+
+  ## Questions
+  Email: ${data.email}
+  ${data.questInstruc}
+
+  GitHub Username: ${data.githubUser}
+  [My GitHub](${getGitHubLink(data.githubUser)})
 `;
 }
 
