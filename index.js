@@ -1,9 +1,9 @@
-// TODO: Include packages needed for this application3
+// Packages for app
 const fs = require("fs");
 const inquirer = require("inquirer")
 const utility = require("./utils/generateMarkdown")
 
-// TODO: Create an array of questions for user input
+// Array to be used in prompts for user input
 const questions = [
     // Title of project which will be used as title of READ.ME
     {
@@ -73,11 +73,32 @@ function convert(arr) {
 
 }
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+// Creates md file
+function writeToFile(fileName, data) {
+    // creates text from data to populate READ.ME
+    const mdText = utility.generateMarkdown(data)
+    // saves file to folder
+    fs.writeFile(fileName, mdText, (err) => {
+        err ? console.log(err) : console.log("Success!")
+    });
+}
 
-// TODO: Create a function to initialize app
-function init() {}
-
+// Initialize app function
+const init = async() => {
+    try{
+        // creates data filled by prompt answers
+        const data = await inquirer.prompt(questions)
+        // Data is then used to populate readme file
+        .then((data) => {
+            // creates file name by changing all letters to lower and removing spaces
+            const fileName = `${data.title.toLowerCase().split(' ').join('')}.md`;
+            // TODO: call to fix lists
+            // create README
+            writeToFile(fileName, data);
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
 // Function call to initialize app
 init();
