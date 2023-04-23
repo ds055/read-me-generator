@@ -15,19 +15,33 @@ const questions = [
     {
         type: "input", 
         name: "description",
-        message: "Enter a brief description of your app. Use '<br>' to create a line break."
+        message: "Enter a brief description of your app."
+    },
+    // Content type for installation
+    {
+        type: "list", 
+        name: "installContent",
+        message: "How would you like to format your installation instructions?",
+        choices: ["Paragraph", "Unordered List", "Ordered List"]
     },
     // Installation Instructions
     {
         type: "input", 
         name: "installation",
-        message: "Please write instructions for installation. For line breaks and lists, refer to the README for formatting."
+        message: "Please write instructions for installation. For line breaks, use '/b'. For list items, prefix each item with '**'."
+    },
+    // Content type for usage instructions
+    {
+        type: "list", 
+        name: "usageContent",
+        message: "How would you like to format your usage instructions?",
+        choices: ["Paragraph", "Unordered List", "Ordered List"]
     },
     // Usage Instructions
     {
         type: "input", 
         name: "usage",
-        message: "Please write usage instructions. For line breaks and lists, refer to the README for formatting."
+        message: "Please write usage instructions. For line breaks, use '/b'. For list items, prefix each item with '**'."
     },
     //License type chosen from a list
     {
@@ -36,23 +50,44 @@ const questions = [
         message: "What license will your project be available under?",
         choices: ["Apache 2.0", "Boost Software License", "CC0", "Eclipse Public License", "IBM Public License", "MIT", "Unilicense", "none"]
     },
+    // Content type for contribution
+    {
+        type: "list", 
+        name: "contributionContent",
+        message: "How would you like to format your contribution instructions?",
+        choices: ["Paragraph", "Unordered List", "Ordered List"]
+    },
     //Contributing: instructions on how users can contribute
     {
         type: "input", 
-        name: "title",
-        message: "What is the title of your project?"
+        name: "contribution",
+        message: "How can users contribute to your project? For line breaks, use '/b'. For list items, prefix each item with '**'."
+    },
+    // Content type for contribution
+    {
+        type: "list", 
+        name: "testContent",
+        message: "How would you like to format your test instructions?",
+        choices: ["Paragraph", "Unordered List", "Ordered List"]
     },
     // Tests: instructions on how users can use tests of the app
     {
         type: "input", 
-        name: "usage",
-        message: "Please write instructions for testing your app. For line breaks and lists, refer to the README for formatting."
+        name: "test",
+        message: "Please write instructions for testing your app. For line breaks, use '/b'. For list items, prefix each item with '**'."
     },
     // User email
     {
         type: "input", 
         name: "email",
         message: "What is your email address?"
+    },
+    // Content type for questions
+    {
+        type: "list", 
+        name: "questionContent",
+        message: "How would you like to format your contribution instructions?",
+        choices: ["Paragraph", "Unordered List", "Ordered List"]
     },
     // Instructions on how users can contact you with questions
     {
@@ -78,6 +113,33 @@ function writeToFile(fileName, data) {
     });
 }
 
+// Creates breaks with /br character 
+function fixContent(part, listType) {
+    part = part.replaceAll("/b", "<br>");
+    if (listType === "Paragraph"){
+        return part;
+    }
+    else if (listType === "Unordered List"){
+        part = createList(part, "ul");
+        return part;
+    }
+    else if (listType === "Ordered List"){
+        part = createList(part, "ol");
+        return part;
+    }
+}
+
+function createList(part, listTag){
+    part = part.split("**")
+    for (let i = 0; i < part.length; i++) {
+        if (part[i] !== "") {
+            part[i] = "<li>" +part[i] + "</li>";
+        }}
+    part = part.join("");
+    part = "<" + listTag + ">" + part + "</" + listTag + ">";
+    return part;
+}
+
 // Initialize app function
 const init = async() => {
     try{
@@ -87,6 +149,11 @@ const init = async() => {
         .then((data) => {
             // creates file name by changing all letters to lower and removing spaces
             const fileName = `${data.title.toLowerCase().split(' ').join('')}.md`;
+            data.installation = fixContent(data.installation, data.installContent)
+            data.usage = fixContent(data.usage, data.usageContent)
+            data.contribution = fixContent(data.contribution, data.contributionContent)
+            data.test = fixContent(data.test, data.testContent)
+            data.questInstruc = fixContent(data.questInstruc, data.questionContent)
             // create README
             writeToFile(fileName, data);
         })
@@ -94,5 +161,7 @@ const init = async() => {
         console.log(err)
     }
 }
+
 // Function call to initialize app
 init();
+

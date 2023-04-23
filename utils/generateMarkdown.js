@@ -77,35 +77,42 @@ function generateMarkdown(data) {
 ${renderLicenseBadge(data.license)}
 
 ## Description
+
 ${data.description}
 
 ## Table of Contents
+
 * [Installation](#installation) 
-\n* [Usage](#usage)
-\n* [License](#license)
-\n* [Contributing](#contributing)
-\n* [Test](#test)
-\n* [Questions](#questions)
+* [Usage](#usage)
+* [License](#license)
+* [Contributing](#contributing)
+* [Test](#test)
+* [Questions](#questions)
 
 ## Installation
+
 ${data.installation}
 
 ## Usage
+
 ${data.usage}
 
 ${renderLicenseSection(data.license)}
 
 ## Contributing
+
 ${data.contributing}
 
 ## Test
+
 ${data.test}
 
 ## Questions
+
 **Email:** ${data.email}
 \n${data.questInstruc}
 
-\nGitHub Username: ${data.githubUser}
+**GitHub Username:** ${data.githubUser}
 \n[My GitHub](${`https://github.com/${data.githubUser}`})
 `;
 }
