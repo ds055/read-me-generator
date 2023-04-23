@@ -15,19 +15,19 @@ const questions = [
     {
         type: "input", 
         name: "description",
-        message: "Enter a brief description of your app."
+        message: "Enter a brief description of your app. Use '<br>' to create a line break."
     },
     // Installation Instructions
     {
         type: "input", 
         name: "installation",
-        message: "Please write instructions for installation."
+        message: "Please write instructions for installation. For line breaks and lists, refer to the README for formatting."
     },
     // Usage Instructions
     {
         type: "input", 
         name: "usage",
-        message: "Please write usage instructions."
+        message: "Please write usage instructions. For line breaks and lists, refer to the README for formatting."
     },
     //License type chosen from a list
     {
@@ -46,7 +46,7 @@ const questions = [
     {
         type: "input", 
         name: "usage",
-        message: "Please write instructions for testing your app."
+        message: "Please write instructions for testing your app. For line breaks and lists, refer to the README for formatting."
     },
     // User email
     {
@@ -58,7 +58,7 @@ const questions = [
     {
         type: "input", 
         name: "questInstruc",
-        message: "Please write instructions on how users may contact you."
+        message: "Please write instructions on how users may contact you. For line breaks and lists, refer to the README for formatting."
     },
     // GitHub Username
     {
@@ -79,7 +79,7 @@ function writeToFile(fileName, data) {
     const mdText = utility.generateMarkdown(data)
     // saves file to folder
     fs.writeFile(fileName, mdText, (err) => {
-        err ? console.log(err) : console.log("Success!")
+        err ? console.log(err) : console.log("README Created!")
     });
 }
 

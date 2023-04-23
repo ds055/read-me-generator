@@ -10,7 +10,7 @@ function renderLicenseLink(license) {}
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
   if (!license) {
-    return ""
+    return ";"
   }
 }
 
@@ -18,41 +18,41 @@ function renderLicenseSection(license) {
 function generateMarkdown(data) {
   // Sets info based on prompts responses
   return `# ${data.title}
-  ${renderLicenseBadge(data.license)}
+${renderLicenseBadge(data.license)}
 
-  ## Description
-  ${data.description}
+## Description
+${data.description}
 
-  ## Table of Contents
-  * [Installation](#installation) 
-  \n* [Usage](#usage)
-  \n* [License](#license)
-  \n* [Contributing](#contributing)
-  \n* [Test](#test)
-  \n* [Questions](#questions)
-  \n
-  ## Installation
-  ${data.installation}
+## Table of Contents
+* [Installation](#installation) 
+\n* [Usage](#usage)
+\n* [License](#license)
+\n* [Contributing](#contributing)
+\n* [Test](#test)
+\n* [Questions](#questions)
 
-  ## Usage
-  ${data.usage}
+## Installation
+${data.installation}
 
-  ## License
-  [License Link](${renderLicenseLink(data.license)})
-  \n${renderLicenseSection(data.license)}
+## Usage
+${data.usage}
 
-  ## Contributing
-  ${data.contributing}
+## License
+[License Link](${renderLicenseLink(data.license)})
+\n${renderLicenseSection(data.license)}
 
-  ## Test
-  ${data.test}
+## Contributing
+${data.contributing}
 
-  ## Questions
-  **Email:** ${data.email}
-  \n${data.questInstruc}
+## Test
+${data.test}
 
-  \nGitHub Username: ${data.githubUser}
-  \n[My GitHub](${`https://github.com/${data.githubUser}`})
+## Questions
+**Email:** ${data.email}
+\n${data.questInstruc}
+
+\nGitHub Username: ${data.githubUser}
+\n[My GitHub](${`https://github.com/${data.githubUser}`})
 `;
 }
 
