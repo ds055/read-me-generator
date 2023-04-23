@@ -34,7 +34,7 @@ const questions = [
         type: "list", 
         name: "license",
         message: "What license will your project be available under?",
-        choices: ["a", "b", "c"]
+        choices: ["Apache 2.0", "Boost Software License", "CC0", "Eclipse Public License", "IBM Public License", "MIT", "Unilicense", "none"]
     },
     //Contributing: instructions on how users can contribute
     {
@@ -68,11 +68,6 @@ const questions = [
     }
 ];
 
-// TODO: Convert lists to proper format
-function convert(arr) {
-
-}
-
 // Creates md file
 function writeToFile(fileName, data) {
     // creates text from data to populate READ.ME
@@ -92,7 +87,6 @@ const init = async() => {
         .then((data) => {
             // creates file name by changing all letters to lower and removing spaces
             const fileName = `${data.title.toLowerCase().split(' ').join('')}.md`;
-            // TODO: call to fix lists
             // create README
             writeToFile(fileName, data);
         })
