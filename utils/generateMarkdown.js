@@ -8,7 +8,7 @@ function renderLicenseBadge(license) {
         return `[![License](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)`;
         break;
       case "CC0":
-        return `[![License: CC0-1.0](https://licensebuttons.net/l/zero/1.0/80x15.png)]`;
+        return `[![License: CC0-1.0](https://licensebuttons.net/l/zero/1.0/80x15.png)](http://creativecommons.org/publicdomain/zero/1.0/)`;
         break;
       case "Eclipse Public License":
         return `[![License](https://img.shields.io/badge/License-EPL_1.0-red.svg)](https://opensource.org/licenses/EPL-1.0)`;
@@ -66,7 +66,7 @@ function renderLicenseSection(license) {
   else {
     return `## License
 This app was created using a ${license} license. 
-[Link to license](${renderLicenseLink(license)})`
+\n[Link to license](${renderLicenseLink(license)})`
   }
 }
 
