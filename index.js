@@ -17,7 +17,7 @@ const questions = [
         name: "description",
         message: "Enter a brief description of your app."
     },
-    // Content type for installation
+    // Content type for installation instructions
     {
         type: "list", 
         name: "installContent",
@@ -50,27 +50,27 @@ const questions = [
         message: "What license will your project be available under?",
         choices: ["Apache 2.0", "Boost Software License", "CC0", "Eclipse Public License", "IBM Public License", "MIT", "Unilicense", "none"]
     },
-    // Content type for contribution
+    // Content type for contribution instructions
     {
         type: "list", 
         name: "contributionContent",
         message: "How would you like to format your contribution instructions?",
         choices: ["Paragraph", "Unordered List", "Ordered List"]
     },
-    //Contributing: instructions on how users can contribute
+    //Instructions on how users can contribute
     {
         type: "input", 
         name: "contribution",
         message: "How can users contribute to your project? For line breaks, use '/b'. For list items, prefix each item with '**'."
     },
-    // Content type for contribution
+    // Content type for testing instructions
     {
         type: "list", 
         name: "testContent",
         message: "How would you like to format your test instructions?",
         choices: ["Paragraph", "Unordered List", "Ordered List"]
     },
-    // Tests: instructions on how users can use tests of the app
+    // Test instructions
     {
         type: "input", 
         name: "test",
@@ -107,18 +107,21 @@ const questions = [
 function writeToFile(fileName, data) {
     // creates text from data to populate READ.ME
     const mdText = utility.generateMarkdown(data)
-    // saves file to folder
+    // saves file to folder; confirms README creation in console
     fs.writeFile(fileName, mdText, (err) => {
         err ? console.log(err) : console.log("README Created!")
     });
 }
 
-// Creates breaks with /br character 
+// Cleans up formatting, allowing for easier paragraph breaks and lists in console entry; this is done so the user can more quickly enter data in the console without having
+// to enter HTML tags. 
 function fixContent(part, listType) {
+    // replaces console entry with HTML for line breaks
     part = part.replaceAll("/b", "<br>");
     if (listType === "Paragraph"){
         return part;
     }
+    // creates list tags via createList function below
     else if (listType === "Unordered List"){
         part = createList(part, "ul");
         return part;
@@ -129,6 +132,7 @@ function fixContent(part, listType) {
     }
 }
 
+// Removes console inputs indicating user's desire for a li; adds appropriate tags to user input for ordered or unordered list
 function createList(part, listTag){
     part = part.split("**")
     for (let i = 0; i < part.length; i++) {
@@ -149,6 +153,7 @@ const init = async() => {
         .then((data) => {
             // creates file name by changing all letters to lower and removing spaces
             const fileName = `${data.title.toLowerCase().split(' ').join('')}.md`;
+            // Cleans up user entries to ensure proper HTML is inserted
             data.installation = fixContent(data.installation, data.installContent)
             data.usage = fixContent(data.usage, data.usageContent)
             data.contribution = fixContent(data.contribution, data.contributionContent)

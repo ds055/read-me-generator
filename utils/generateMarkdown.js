@@ -1,4 +1,4 @@
-// If there is no license, return an empty string
+// If there is no license, return an empty string; otherwise, find the chosen license.
 function renderLicenseBadge(license) {
     switch(license) {
       case "Apache 2.0":
@@ -27,7 +27,7 @@ function renderLicenseBadge(license) {
     }
   }
 
-// If there is no license, return an empty string
+// If there is no license, return an empty string; otherwise, find the chosen license url. 
 function renderLicenseLink(license) {
   switch(license) {
     case "Apache 2.0":
@@ -57,16 +57,95 @@ function renderLicenseLink(license) {
   }
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
+// If there is no license, return an empty string; otherwise, populates date based on selection in node.js.
 function renderLicenseSection(license) {
   if (license === "none") {
     return ""
   }
   else {
-    return `## License
-This app was created using a ${license} license. 
-\n[Link to license](${renderLicenseLink(license)})`
+    return `## License \nThis app was created using a ${license} license. 
+    \n[Link to license](${renderLicenseLink(license)})`
+  }
+}
+
+// If data is present, renders description data in template literal; called in generateMarkdown()
+function renderDescription(data) {
+  if (data === undefined || data == ""){return "";}
+  else {
+    return `## Description \n ${data}`
+  }
+  
+}
+
+// If data is present, renders installation info in template literal; called in generateMarkdown()
+function renderInstallation(data) {
+  if (data === undefined || data == ""){return "";}
+  else {
+    return `## Installation \n ${data}`
+  }
+}
+
+// If data is present, renders usage instructions in template literal; called in generateMarkdown()
+function renderUsage(data) {
+  if (data === undefined || data == ""){return "";}
+  else {
+    return `## Usage \n ${data}`
+  }
+}
+
+// If data is present, renders contribution instructions in template literal; called in generateMarkdown()
+function renderContribution(data) {
+  if (data === undefined || data == ""){return "";}
+  else {
+    return `## Contributing \n ${data}`
+  }
+}
+
+// If data is present, renders testing instructions in template literal; called in generateMarkdown()
+function renderTest(data) {
+  if (data === undefined || data == ""){return "";}
+  else {
+    return `## Test \n ${data}`
+  }
+}
+
+// If data is present, renders email, question info, and Git info in template literal; called in generateMarkdown()
+function renderQuestions(data) {
+  if (data.email === undefined && data.questInstruc === undefined && data.githubUser === undefined){return ""}
+  else if (data.email == "" && data.questInstruc == "" && data.githubUser == ""){return ""}
+  else {
+    return `## Questions
+
+  ${renderEmail(data.email)}
+
+  ${renderquestInstr(data.questInstruc)}
+    
+  ${renderGit(data.githubUser)}`
+  }
+}
+
+// If data is present, renders email info in template literal; called in renderQuestions()
+function renderEmail(data){
+  if (data === undefined){return ""}
+  else {
+    return `**Email:** ${data}`
+  }
+}
+
+// If data is present, renders questions forwarding instructions in template literal; called in renderQuestions()
+function renderquestInstr(data){
+  if (data === undefined){return ""}
+  else {
+    return `${data}`
+  }
+}
+
+// If data is present, renders Git info in template literal; called in renderQuestions()
+function renderGit(data){
+  if (data === undefined){return ""}
+  else {
+    return `**GitHub Username:** ${data}
+    \n[My GitHub]('https://github.com/${data}')`
   }
 }
 
@@ -76,9 +155,7 @@ function generateMarkdown(data) {
   return `# ${data.title}
 ${renderLicenseBadge(data.license)}
 
-## Description
-
-${data.description}
+\n${renderDescription(data.description)}
 
 ## Table of Contents
 
@@ -89,33 +166,20 @@ ${data.description}
 * [Test](#test)
 * [Questions](#questions)
 
-## Installation
+${renderInstallation(data.installation)}
 
-${data.installation}
-
-## Usage
-
-${data.usage}
+${renderUsage(data.installation)}
 
 ${renderLicenseSection(data.license)}
 
-## Contributing
+${renderContribution(data.contribution)}
 
-${data.contributing}
+${renderTest(data.test)}
 
-## Test
-
-${data.test}
-
-## Questions
-
-**Email:** ${data.email}
-\n${data.questInstruc}
-
-**GitHub Username:** ${data.githubUser}
-\n[My GitHub](${`https://github.com/${data.githubUser}`})
+${renderQuestions(data)}
 `;
 }
 
 // Export generateMarkdown function for use in index.js
 module.exports = {generateMarkdown};
+
