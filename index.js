@@ -86,7 +86,7 @@ const questions = [
     {
         type: "list", 
         name: "questionContent",
-        message: "How would you like to format your contribution instructions?",
+        message: "How would you like to format your questions and contact instructions?",
         choices: ["Paragraph", "Unordered List", "Ordered List"]
     },
     // Instructions on how users can contact you with questions
