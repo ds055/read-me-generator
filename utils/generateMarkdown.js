@@ -145,7 +145,7 @@ function renderGit(data){
   if (data === undefined){return ""}
   else {
     return `**GitHub Username:** ${data}
-    \n[My GitHub]('https://github.com/${data}')`
+    \n[My GitHub](https://github.com/${data})`
   }
 }
 
