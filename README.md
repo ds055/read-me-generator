@@ -1,6 +1,8 @@
 # README Generator
 <!-- TODO: Link to video -->
-[Link to Video]()
+[Link to Video](https://drive.google.com/file/d/1LfNaEChuBNXGg5FXJkbzujLNlP68xCkN/view)
+
+[Sample README Created with APP](./sampleapp.md)
 
 ## Description
 This app generates a README file based on user responses to prompts in the terminal. 
