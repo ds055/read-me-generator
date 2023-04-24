@@ -168,7 +168,7 @@ ${renderLicenseBadge(data.license)}
 
 ${renderInstallation(data.installation)}
 
-${renderUsage(data.installation)}
+${renderUsage(data.usage)}
 
 ${renderLicenseSection(data.license)}
 
