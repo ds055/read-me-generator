@@ -1,30 +1,32 @@
-# Weather-Dashboard
-<!-- TODO:  -->
-[Link to the Web App](https://ds055.github.io/weather-dashboard/)
+# README Generator
+<!-- TODO: Link to video -->
+[Link to Video]()
 
 ## Description
-An interactive weather forecasting site/app that allows users to find current and forecasted weather for a specific city. 
+This app generates a README file based on user responses to prompts in the terminal. 
 
 ## Screenshot
-![Website Mockup](./assets/images/AppScreenshot.png)
+![App Screenshot](./images/readmeGenerator.png)
 
 ## Installation
-N/A
+* Download the requisite files to your computer from GitHub.
+* In the console, use the "npm i" command to install the required node modules. 
 
 ## Usage
-* Users will arrive at the website--perhaps discovered via a search engine.
-* The site will load with Nashville as the default city, for which one can see the current weather and forecasted weather over the next five days. 
-* Users may change the designated city by typing in the city name in the search bar and clicking the search button or pressing the enter key. 
-* If the city is found, the on-page data will update reflecting weather for the given city. 
-* Furthermore, a successful search will add this location to a list of up-to five previously viewed cities.
-* If the user clicks on one of the previously viewed cities, the weather data will update to reflect that municipality. 
-* If the list is full, the earliest conducted search will be removed from the list. 
-* In the event the city doesn't exist or can't be found, the user will be notified as such in the search bar. 
+* Open the app's folder in the terminal.
+* Ensuring you're in the right folder, use the "node index.js" command to start the app. 
+* A series of prompts will guide you through the creation of content for your README.
+* The title of the project will also be the title of the README once generated.
+* Certain sections of the README will ask what format you'd like the data to be in: paragraph, unordered list, or ordered list. Choose accordingly.
+* In these sections, "/b" can be entered to create a line break. 
+* Double asterisks ("**") can be used to create a list item for the previously chosen list type. Please do not put a space between the asterisks and the following text. (Ex: "\**First data point").
+* Users may leave sections blank, and those section titles will not be printed to the README. 
+* PLEASE NOTE: The Table of Contents will still reflect the omitted section, so you will have to manually delete it if you wish for it to be removed. This error will hopefully be fixed in a future update. 
+* At the conclusion of the prompts, you'll be notified in the console if your README was successfully generated. 
+* Your README will be located in the READ-ME-GENERATOR project folder under the title of your project. 
+* Thanks for using my app!
 
 ## License
 Please refer to the license in the repo.
 
 - - -
-To create a line break in a text response, use '<br\>'. 
-
-To create lists, use the appropriate punctuation before the text, and at the end of the line, use '<br\>' to create a line break. 
